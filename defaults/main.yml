@@ -1,0 +1,42 @@
+---
+apt_cache_valid_time: 86400
+
+php7_fpm_version: '7.0'
+
+php7_fpm_pools:
+  - name: demo
+    user: www-data
+    group: www-data
+    listen: 9000
+    chdir: /
+
+php7_fpm_pool_defaults:
+  pm: dynamic
+  pm.max_children: 5
+  pm.start_servers: 2
+  pm.min_spare_servers: 1
+  pm.max_spare_servers: 3
+  pm.status_path: /status
+
+php7_fpm_apt_packages:
+  - "php{{ php7_fpm_version }}-fpm"
+
+php7_fpm_default_pool:
+  delete: yes
+  name: www.conf
+
+php7_fpm_ini:
+ - option: "engine"
+   section: "PHP"
+   value: "1"
+ - option: "error_reporting"
+   section: "PHP"
+   value: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+ - option: "ldap.max_links"
+   section: "ldap"
+   value: "1"
+
+php7_fpm_config:
+ - option: "error_log"
+   section: "global"
+   value: "/var/log/php{{ php7_fpm_version }}-fpm.log"

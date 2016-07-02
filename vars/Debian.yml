@@ -1,0 +1,9 @@
+---
+php7_fpm_ini_path: /etc/php/{{ php7_fpm_version }}/fpm/php.ini
+php7_fpm_config_path: /etc/php/{{ php7_fpm_version }}/fpm/php7-fpm.conf
+php7_fpm_pool_d: /etc/php/{{ php7_fpm_version }}/fpm/pool.d
+
+php7_fpm_binary_name: php-fpm{{ php7_fpm_version }}
+php7_fpm_service_name: php{{ php7_fpm_version }}-fpm
+
+php7_fpm_pid_file: /var/run/php/php{{ php7_fpm_version }}-fpm.pid
